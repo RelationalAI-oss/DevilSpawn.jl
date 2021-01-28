@@ -39,7 +39,7 @@ Task (runnable) @0x000000010e2fb610
 # but *crucially*, the REPL remains responsive, while the task waits for a thread:
 
 julia> @spawn_background (@info "Blocking thread $(Threads.threadid())" ; while true end)
-Task (runnable) @0x000000010e2fb610
+Task (runnable) @0x0000000110870910
 
 julia> println("🎉")
 🎉
