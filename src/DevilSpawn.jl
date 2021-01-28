@@ -6,11 +6,16 @@ import Base.Threads
     @spawn_background expr
 
 Like `@spawn`, but ensures that the spawned task isn't scheduled on the main thread, except
-if `nthreads() == 1`.
+if `nthreads() == 1`, in which case this is equivalent to `@async`.
 
 If all background threads are currently blocked, we retry until one becomes available using
 a small exponential backoff. A `yield()` call or automatically placed yield point will free
 up the thread and allow another task to be scheduled.
+
+If all background threads are currently busy, this Task will block, retrying until one 
+becomes available using a small exponential backoff. A `yield()` call in one of the other 
+threads or an automatically placed yield point will eventually free up a thread, and allow 
+this task to be scheduled.
 """
 macro spawn_background(exprs...)
     esc(quote
