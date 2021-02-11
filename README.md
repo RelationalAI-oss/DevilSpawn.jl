@@ -2,7 +2,7 @@
 
 Provides a hacky workaround to force a task to @spawn on an available background thread (except if `nthreads() == 1`).
 
-This package becomes oblivious once Julia allows to define where a task is allowed to spawn.
+This package becomes obsolete once Julia allows to define where a task is allowed to spawn.
 
 `@spawn_background expr` will spawn a Task on another thread, automatically retrying until it spawns somewhere that's not `taskid == 1`.
 
